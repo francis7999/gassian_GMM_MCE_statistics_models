@@ -61,21 +61,24 @@ def k_means(X_train_array, k, eps):
             indexs = [i for i,a in enumerate(labels) if a== j]
             s = X_train_array[indexs].sum()
             if len(indexs) == 0:
-                new_mius[j] = np.array(['inf']*new_mius[j].shape[0])
+                new_mius[j] = np.array([float('inf')]*new_mius[j].shape[0])
             else:
                 new_mius[j] = s / len(indexs)
         for j in range(new_mius.shape[0]):
-            if 'inf' in list(new_mius[j]):
+            if float('inf') in list(new_mius[j]):
                 mius = new_mius
                 return mius, labels
         a = np.power(mius - new_mius, 2)
         b = np.sqrt(a.sum(axis = 1))
+
         mius = new_mius
         if b.sum()< eps :
             break
     return mius, labels
 
 def ndim_gaussian(x, miu, var):
+    if float('inf') in miu or float('inf') in var :
+        return 0
     n = x.shape[0]
     var_multiply = 1.0
     for i in range(var.shape[0]):
@@ -92,28 +95,32 @@ def GMM_EM(X_train_array, k, phis_in, mius_in, vars_in, eps):
     vars = vars_in
     while True:
         for i in range(w.shape[0]):
-            m = 0.0
             for j in range(w.shape[1]):
-                m += ndim_gaussian(X_train_array[i], mius[j], vars[j]) * phis[j]
-            for j in range(w.shape[1]):
-                w[i][j] = (ndim_gaussian(X_train_array[i], mius[j], vars[j]) * phis[j])/m
+                w[i][j] = ndim_gaussian(X_train_array[i], mius[j], vars[j]) * phis[j]
+            w[i] = w[i] / w[i].sum()
         for j in range(w.shape[1]):
             s1 = 0.0
-            s2 = 0.0
-            s3 = 0.0
+            s2 = np.zeros(mius[j].shape)
+            s3 = np.zeros(vars[j].shape)
             for i in range(w.shape[0]):
                 s1 += w[i][j]
                 s2 += w[i][j] * X_train_array[i]
-                s3 += w[i][j] * (X_train_array[i] - mius[j]) * (X_train_array[i] - mius[j])
-            phis[j] = s1 / w.shape[0]
-            mius[j] = s2 / s1
-            vars[j] = s3 / s1
+                if float('inf') in mius[j] :
+                    s3 += np.zeros(vars[j].shape)
+                else:
+                    s3 += w[i][j] * (X_train_array[i] - mius[j]) * (X_train_array[i] - mius[j])
+            if float('inf') in mius[j]:
+                phis[j] = phis[j]
+                mius[j] = mius[j]
+                vars[j] = vars[j]
+            else:
+                phis[j] = s1 / w.shape[0]
+                mius[j] = s2 / s1
+                vars[j] = s3 / s1
         for i in range(w.shape[0]):
-            m = 0.0
             for j in range(w.shape[1]):
-                m += ndim_gaussian(X_train_array[i], mius[j], vars[j]) * phis[j]
-            for j in range(w.shape[1]):
-                w_new[i][j] = (ndim_gaussian(X_train_array[i], mius[j], vars[j]) * phis[j])/m
+                w_new[i][j] = ndim_gaussian(X_train_array[i], mius[j], vars[j]) * phis[j]
+            w_new[i] = w_new[i] / w_new[i].sum()
         a = np.power(w - w_new, 2)
         b = np.sqrt(a.sum(axis = 1))
         if b.sum()< eps :
@@ -136,39 +143,44 @@ if __name__ == '__main__':
     X_train_dict = file2dict('train.txt')
     X_train_dict['A'] = np.array(X_train_dict['A'])
     X_train_dict['B'] = np.array(X_train_dict['B'])
-    k = 8
-    mius = {}
-    vars = {}
-    phis = {}
-    for label in X_train_dict:
-        mius[label], classes = k_means(X_train_dict[label], k, 1.0e-3)
-        vars[label] = np.zeros(mius[label].shape, dtype = np.float64)
-        phis[label] = np.zeros(k, dtype = np.float64)
-        numbers = np.zeros(k)
-        for j in range(k):
-            numbers[j] = len([i for i,a in enumerate(classes) if a== j])
-        for i in range(len(classes)):
-            vars[label][classes[i]] += np.power(X_train_dict[label][i] - mius[label][classes[i]], 2)
-        for i in range(vars[label].shape[0]):
-            vars[label][i] = vars[label][i] / float(numbers[i])
-        phis[label] = numbers/float(X_train_dict[label].shape[0])
-        phis[label], mius[label], vars[label] = GMM_EM(X_train_dict[label], k, phis[label], mius[label], vars[label], 1.0e-3)
-
     X_test_dict = file2dict('test.txt')
     X_test_dict['A'] = np.array(X_test_dict['A'])
     X_test_dict['B'] = np.array(X_test_dict['B'])
-    number_of_error = 0
-    for label in X_test_dict:
-        for x in X_test_dict[label]:
-            label_predict = classify(x, mius, vars, phis)
-            if cmp(label_predict, label) != 0:
-                number_of_error += 1
+    k = 4
+    error_rate = 1.0
+    while error_rate > 0.2:
+        mius = {}
+        vars = {}
+        phis = {}
+        for label in X_train_dict:
+            mius[label], classes = k_means(X_train_dict[label], k, 1.0e-5)
+            vars[label] = np.zeros(mius[label].shape, dtype = np.float64)
+            phis[label] = np.zeros(k, dtype = np.float64)
+            numbers = np.zeros(k)
+            for j in range(k):
+                numbers[j] = len([i for i,a in enumerate(classes) if a== j])
+            for i in range(len(classes)):
+                vars[label][classes[i]] += np.power(X_train_dict[label][i] - mius[label][classes[i]], 2)
+            for i in range(vars[label].shape[0]):
+                if numbers[i] == 0:
+                    vars[label][i] = np.array([float('inf')]*vars[label][i].shape[0])
+                else:
+                    vars[label][i] = vars[label][i] / float(numbers[i])
+            phis[label] = numbers/float(X_train_dict[label].shape[0])
+            phis[label], mius[label], vars[label] = GMM_EM(X_train_dict[label], k, phis[label], mius[label], vars[label], 1.0e-5)
 
-    number_of_test = len(X_test_dict['A']) + len(X_test_dict['B'])
-    error_rate = float(number_of_error)/float(number_of_test)
-    print mius
-    print vars
-    print phis
-    print ('number of classification error: %d'%(number_of_error))
-    print ('classification error rate: %f'%(error_rate))
-    print('classification rate : %f' %(1-error_rate))
+        number_of_error = 0
+        for label in X_test_dict:
+            for x in X_test_dict[label]:
+                label_predict = classify(x, mius, vars, phis)
+                if cmp(label_predict, label) != 0:
+                    number_of_error += 1
+
+        number_of_test = len(X_test_dict['A']) + len(X_test_dict['B'])
+        error_rate = float(number_of_error)/float(number_of_test)
+        print mius
+        print vars
+        print phis
+        print ('number of classification error: %d'%(number_of_error))
+        print ('classification error rate: %f'%(error_rate))
+        print('classification rate : %f' %(1-error_rate))
