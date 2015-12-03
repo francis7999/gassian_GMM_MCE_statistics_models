@@ -1,11 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-
 import numpy as np
-from math import sqrt
-from math import exp
-from math import pi
-from math  import pow
+from math import sqrt, exp, pi, pow
 import random
 
 def file2dict(filename):
@@ -36,9 +32,9 @@ def distance(vecA, vecB):##vecA 和 vecB都是np.array
     D = sqrt(np.sum(np.power(vecA - vecB, 2)))
     return D
 
-def random_assign(X_train_list, k):
-    min_list = X_train_list.min(axis = 0)
-    max_list = X_train_list.max(axis = 0)
+def random_assign(X_train_array, k):
+    min_list = X_train_array.min(axis = 0)
+    max_list = X_train_array.max(axis = 0)
     miu = []
     for i in range(k):
         a = []
@@ -48,25 +44,26 @@ def random_assign(X_train_list, k):
         miu.append(a)
     return miu
 
-def k_means(X_train_list, k):
-    labels = [0]*X_train_list.shape[0]
-    distances = ['inf']*X_train_list.shape[0]
-    mius = random_assign(X_train_list, k)
+def k_means(X_train_array, k):
+    labels = [0]*X_train_array.shape[0]
+    distances = ['inf']*X_train_array.shape[0]
+    mius = random_assign(X_train_array, k)
     mius = np.array(mius)
     new_mius = np.zeros(mius.shape)
     while True:
-        for i in range(X_train_list.shape[0]):
+        for i in range(X_train_array.shape[0]):
             for j in range(mius.shape[0]):
-                d = distance(X_train_list[i], mius[j])
+                d = distance(X_train_array[i], mius[j])
                 if d < distances[i]:
                     distances[i] = d
                     labels[i] = j
         for j in range(new_mius.shape[0]):
             indexs = [i for i,a in enumerate(labels) if a== j]
-            s = np.zeros(X_train_list.shape[1])
-            for i in indexs:
-                s += X_train_list[i]
-            new_mius[j] = s/len(indexs)
+            s = X_train_array[indexs].sum()
+            if len(indexs) == 0:
+                new_mius[j] = np.array(['inf']*new_mius[j].shape[0])
+            else:
+                new_mius[j] = s / len(indexs)
         a = np.power(mius - new_mius, 2)
         b = np.sqrt(a.sum(axis = 1))
         mius = new_mius
@@ -83,9 +80,9 @@ def ndim_gaussian(x, miu, var):
     f = 1.0 / (sqrt(pow((2.0 * pi), n) * var_multiply)) * exp(-1.0 / 2.0 * a.sum())
     return f
 
-def GMM_EM(X_train_list, k, phis_in, mius_in, vars_in):
-    w = np.zeros((X_train_list.shape[0], k))
-    w_new = np.zeros((X_train_list.shape[0], k))
+def GMM_EM(X_train_array, k, phis_in, mius_in, vars_in):
+    w = np.zeros((X_train_array.shape[0], k))
+    w_new = np.zeros((X_train_array.shape[0], k))
     phis = phis_in
     mius = mius_in
     vars = vars_in
@@ -93,51 +90,78 @@ def GMM_EM(X_train_list, k, phis_in, mius_in, vars_in):
         for i in range(w.shape[0]):
             m = 0.0
             for j in range(w.shape[1]):
-                m += ndim_gaussian(X_train_list[i], mius[j], vars[j]) * phis[j]
+                m += ndim_gaussian(X_train_array[i], mius[j], vars[j]) * phis[j]
             for j in range(w.shape[1]):
-                w[i][j] = (ndim_gaussian(X_train_list[i], mius[j], vars[j]) * phis[j])/m
+                w[i][j] = (ndim_gaussian(X_train_array[i], mius[j], vars[j]) * phis[j])/m
         for j in range(w.shape[1]):
             s1 = 0.0
             s2 = 0.0
             s3 = 0.0
             for i in range(w.shape[0]):
                 s1 += w[i][j]
-                s2 += w[i][j] * X_train_list[i]
-                s3 += w[i][j] * (X_train_list[i] - mius[j]) * (X_train_list[i] - mius[j])
+                s2 += w[i][j] * X_train_array[i]
+                s3 += w[i][j] * (X_train_array[i] - mius[j]) * (X_train_array[i] - mius[j])
             phis[j] = s1 / w.shape[0]
             mius[j] = s2 / s1
             vars[j] = s3 / s1
         for i in range(w.shape[0]):
             m = 0.0
             for j in range(w.shape[1]):
-                m += ndim_gaussian(X_train_list[i], mius[j], vars[j]) * phis[j]
+                m += ndim_gaussian(X_train_array[i], mius[j], vars[j]) * phis[j]
             for j in range(w.shape[1]):
-                w_new[i][j] = (ndim_gaussian(X_train_list[i], mius[j], vars[j]) * phis[j])/m
+                w_new[i][j] = (ndim_gaussian(X_train_array[i], mius[j], vars[j]) * phis[j])/m
         a = np.power(w - w_new, 2)
         b = np.sqrt(a.sum(axis = 1))
         if b.sum()< 1e-5 :
             break
     return phis, mius, vars
 
+def classify(x, mius, vars, phis):
+    post = {}
+    for label in phis:
+        k = phis[label].shape[0]
+        post[label] = 0.0
+        for i in range(k):
+            post[label] += phis[label][i] * ndim_gaussian(x, mius[label][i], vars[label][i])
+    post_2 = post.items()
+    post_2.sort(key = lambda one_post : one_post[1], reverse= True)
+    return post_2[0][0]
 
 
-X_train_dict = file2dict('train.txt')
-X_train_list = X_train_dict['A'] + X_train_dict['B']
-X_train_list = np.array(X_train_list)
-k = 2
-mius, labels = k_means(X_train_list, k)
-vars = np.zeros(mius.shape, dtype = np.float64)
-phis = np.zeros(mius.shape[0], dtype = np.float64)
-numbers = np.zeros(mius.shape[0])
-for j in range(k):
-    numbers[j] = len([i for i,a in enumerate(labels) if a== j])
-for i in range(len(labels)):
-    vars[labels[i]] += np.power(X_train_list[i] - mius[labels[i]], 2)
-for i in range(vars.shape[0]):
-    vars[i] = vars[i] / float(numbers[i])
-phis = numbers/float(X_train_list.shape[0])
-phis, mius, vars = GMM_EM(X_train_list, k, phis, mius, vars)
-print phis
-print mius
-print vars
+if __name__ == '__main__':
+    X_train_dict = file2dict('train.txt')
+    X_train_dict['A'] = np.array(X_train_dict['A'])
+    X_train_dict['B'] = np.array(X_train_dict['B'])
+    k = 4
+    mius = {}
+    vars = {}
+    phis = {}
+    for label in X_train_dict:
+        mius[label], classes = k_means(X_train_dict[label], k)
+        vars[label] = np.zeros(mius[label].shape, dtype = np.float64)
+        phis[label] = np.zeros(k, dtype = np.float64)
+        numbers = np.zeros(k)
+        for j in range(k):
+            numbers[j] = len([i for i,a in enumerate(classes) if a== j])
+        for i in range(len(classes)):
+            vars[label][classes[i]] += np.power(X_train_dict[label][i] - mius[label][classes[i]], 2)
+        for i in range(vars[label].shape[0]):
+            vars[label][i] = vars[label][i] / float(numbers[i])
+        phis[label] = numbers/float(X_train_dict[label].shape[0])
+        phis[label], mius[label], vars[label] = GMM_EM(X_train_dict[label], k, phis[label], mius[label], vars[label])
 
+    X_test_dict = file2dict('test.txt')
+    X_test_dict['A'] = np.array(X_test_dict['A'])
+    X_test_dict['B'] = np.array(X_test_dict['B'])
+    number_of_error = 0
+    for label in X_test_dict:
+        for x in X_test_dict[label]:
+            label_predict = classify(x, mius, vars, phis)
+            if cmp(label_predict, label) != 0:
+                number_of_error += 1
+
+    number_of_test = len(X_test_dict['A']) + len(X_test_dict['B'])
+    error_rate = float(number_of_error)/float(number_of_test)
+    print ('number of classification error: %d'%(number_of_error))
+    print ('classification error rate: %f'%(error_rate))
+    print('classification rate : %f' %(1-error_rate))
