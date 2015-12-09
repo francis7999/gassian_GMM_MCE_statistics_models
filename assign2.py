@@ -39,8 +39,8 @@ def random_assign(X_train_array, k):
     for i in range(k):
         a = []
         for j in range(len(min_list)):
-            k = random.random()
-            a.append(min_list[j] + (max_list[j] - min_list[j])*k)
+            r = random.random()
+            a.append(min_list[j] + (max_list[j] - min_list[j]) * r)
         miu.append(a)
     return miu
 
@@ -146,9 +146,9 @@ if __name__ == '__main__':
     X_test_dict = file2dict('test.txt')
     X_test_dict['A'] = np.array(X_test_dict['A'])
     X_test_dict['B'] = np.array(X_test_dict['B'])
-    k = 4
+    k = 8
     error_rate = 1.0
-    while error_rate > 0.2:
+    while error_rate > 0.19:
         mius = {}
         vars = {}
         phis = {}
@@ -167,7 +167,7 @@ if __name__ == '__main__':
                 else:
                     vars[label][i] = vars[label][i] / float(numbers[i])
             phis[label] = numbers/float(X_train_dict[label].shape[0])
-            phis[label], mius[label], vars[label] = GMM_EM(X_train_dict[label], k, phis[label], mius[label], vars[label], 1.0e-5)
+            phis[label], mius[label], vars[label] = GMM_EM(X_train_dict[label], k, phis[label], mius[label], vars[label], 1.0e-2)
 
         number_of_error = 0
         for label in X_test_dict:
