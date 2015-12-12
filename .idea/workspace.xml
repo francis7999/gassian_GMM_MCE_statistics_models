@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1eba78bf-2cdb-4264-8569-b032eb2193f6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/a3_grid_search.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assign3.py" afterPath="$PROJECT_DIR$/assign3.py" />
     </list>
     <ignored path="gassian_GMM_MCE_statistics_models.iws" />
@@ -28,20 +26,8 @@
       <file leaf-file-name="assign3.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assign3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5051282">
-              <caret line="170" column="12" selection-start-line="170" selection-start-column="12" selection-end-line="170" selection-end-column="12" />
-              <folding>
-                <element signature="e#42#60#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="a3_grid_search.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/a3_grid_search.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="171" column="45" selection-start-line="171" selection-start-column="45" selection-end-line="171" selection-end-column="45" />
+            <state vertical-scroll-proportion="0.51282054">
+              <caret line="184" column="33" selection-start-line="184" selection-start-column="33" selection-end-line="184" selection-end-column="33" />
               <folding>
                 <element signature="e#42#60#0" expanded="true" />
               </folding>
@@ -624,7 +610,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/a3_grid_search.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="1.1461538">
           <caret line="171" column="45" selection-start-line="171" selection-start-column="45" selection-end-line="171" selection-end-column="45" />
           <folding>
             <element signature="e#42#60#0" expanded="true" />
@@ -634,8 +620,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assign3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5051282">
-          <caret line="170" column="12" selection-start-line="170" selection-start-column="12" selection-end-line="170" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.51282054">
+          <caret line="184" column="33" selection-start-line="184" selection-start-column="33" selection-end-line="184" selection-end-column="33" />
           <folding>
             <element signature="e#42#60#0" expanded="true" />
           </folding>

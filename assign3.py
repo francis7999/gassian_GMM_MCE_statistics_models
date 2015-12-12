@@ -153,7 +153,7 @@ if __name__ == '__main__':
         total_num += X_train_dict[label].shape[0]
     for label in X_train_dict:
         priors[label] = float(X_train_dict[label].shape[0]) / float(total_num)
-
+    ''''
     mius['A'] = random_assign(X_train_dict['A'], 1)
     mius['B'] = random_assign(X_train_dict['B'], 1)
     vars['A'] = np.zeros(X_train_dict['A'].shape[1], dtype= float)
@@ -164,7 +164,7 @@ if __name__ == '__main__':
             vars[label] += np.power(X_train_dict[label][i] - mius[label], 2)
     for label in vars:
         vars[label] = vars[label] / X_train_dict[label].shape[0]
-
+    '''
     Q_list = []
     train_error_list = []
     test_error_list = []
@@ -172,9 +172,9 @@ if __name__ == '__main__':
     eps = 1.0e-3
     print ('Q = %f' %Q_func(X_train_dict, mius, vars, priors) )
     Q_list.append(Q_func(X_train_dict, mius, vars, priors))
-    print ('train_error = %d' %total_error(X_train_dict, mius, vars, priors))
+    print ('train_error = %f' %(float(total_error(X_train_dict, mius, vars, priors)) / float(X_train_dict['A'].shape[0] + X_train_dict['B'].shape[0])))
     train_error_list.append(float(total_error(X_train_dict, mius, vars, priors)) / float(X_train_dict['A'].shape[0] + X_train_dict['B'].shape[0]))
-    print ('test_error = %d' %total_error(X_test_dict, mius, vars, priors))
+    print ('test_error = %f' %(float(total_error(X_test_dict, mius, vars, priors)) / float(X_test_dict['A'].shape[0] + X_test_dict['B'].shape[0])))
     test_error_list.append(float(total_error(X_test_dict, mius, vars, priors)) / float(X_test_dict['A'].shape[0] + X_test_dict['B'].shape[0]))
     while True:
         new_mius ,new_vars = gradient_descent(X_train_dict, mius, vars, priors, a, eps)
@@ -189,9 +189,9 @@ if __name__ == '__main__':
         vars = new_vars
         print ('Q = %f' %Q_func(X_train_dict, mius, vars, priors) )
         Q_list.append(Q_func(X_train_dict, mius, vars, priors))
-        print ('train_error = %d' %total_error(X_train_dict, mius, vars, priors))
+        print ('train_error = %f' %(float(total_error(X_train_dict, mius, vars, priors)) / float(X_train_dict['A'].shape[0] + X_train_dict['B'].shape[0])))
         train_error_list.append(float(total_error(X_train_dict, mius, vars, priors)) / float(X_train_dict['A'].shape[0] + X_train_dict['B'].shape[0]))
-        print ('test_error = %d' %total_error(X_test_dict, mius, vars, priors))
+        print ('test_error = %f' %(float(total_error(X_test_dict, mius, vars, priors)) / float(X_test_dict['A'].shape[0] + X_test_dict['B'].shape[0])))
         test_error_list.append(float(total_error(X_test_dict, mius, vars, priors)) / float(X_test_dict['A'].shape[0] + X_test_dict['B'].shape[0]))
 #        print float(total_error(X_train_dict, mius, vars, priors)) / float(X_train_dict['A'].shape[0])
 #        print float(total_error(X_test_dict, mius, vars, priors)) / float(X_test_dict['A'].shape[0])
