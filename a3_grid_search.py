@@ -138,11 +138,16 @@ def pic_plot(Q_array, train_error_array, test_error_array):
 
 if __name__ == '__main__':
     X_train_dict = file2dict('train.txt')
+    X_test_dict = file2dict('test.txt')
+    X_all_dict = {}
+    for label in X_train_dict:
+        X_all_dict[label] = X_train_dict[label] + X_test_dict[label]
     X_train_dict['A'] = np.array(X_train_dict['A'], dtype= float)
     X_train_dict['B'] = np.array(X_train_dict['B'], dtype= float)
-    X_test_dict = file2dict('test.txt')
     X_test_dict['A'] = np.array(X_test_dict['A'], dtype= float)
     X_test_dict['B'] = np.array(X_test_dict['B'], dtype= float)
+    X_all_dict['A'] = np.array(X_all_dict['A'], dtype= float)
+    X_all_dict['B'] = np.array(X_all_dict['B'], dtype= float)
     mius = {}
     vars = {}
     priors = {}
@@ -152,26 +157,52 @@ if __name__ == '__main__':
         vars[label] = np.var(X_train_dict[label], axis = 0)
         total_num += X_train_dict[label].shape[0]
     for label in X_train_dict:
-        priors[label] = float(X_train_dict[label].shape[0]) / float(total_num)
-    eps_range = [i / 1.0e5 for i in range(1, 11, 1)] + [i / 1.0e4 for i in range(1, 11, 1)] + [i / 1.0e3 for i in range(1, 11, 1)]
-#   a =10 , eps = 6e-3 是一组可行解
-    for a in [float(i) for i in range(1, 11, 1)]:
-        for eps in eps_range:
-            while True:
-                new_mius ,new_vars = gradient_descent(X_train_dict, mius, vars, priors, a, eps)
-                m = 0.0
-                n = 0.0
-                for label in mius :
-                    p = np.power(mius[label] - new_mius[label], 2)
-                    m += np.sqrt(p.sum())
-                    q = np.power(vars[label] - new_vars[label], 2)
-                    n += np.sqrt(q.sum())
-                mius = new_mius
-                vars = new_vars
-            #        print float(total_error(X_train_dict, mius, vars, priors)) / float(X_train_dict['A'].shape[0])
-            #        print float(total_error(X_test_dict, mius, vars, priors)) / float(X_test_dict['A'].shape[0])
-                if m < 1e-5 and n <1e-5 :
-                    break
-            print ('a = %f, eps = %f' %(a, eps))
-            print ('train_error = %d' %total_error(X_train_dict, mius, vars, priors))
-            print ('test_error = %d' %total_error(X_test_dict, mius, vars, priors))
+        #priors[label] = float(X_train_dict[label].shape[0]) / float(total_num)
+        priors[label] = 0.5
+    ''''
+    mius['A'] = random_assign(X_train_dict['A'], 1)
+    mius['B'] = random_assign(X_train_dict['B'], 1)
+    vars['A'] = np.zeros(X_train_dict['A'].shape[1], dtype= float)
+    vars['B'] = np.zeros(X_train_dict['B'].shape[1], dtype= float)
+    print mius
+    for label in vars :
+        for i in xrange(X_train_dict[label].shape[0]):
+            vars[label] += np.power(X_train_dict[label][i] - mius[label], 2)
+    for label in vars:
+        vars[label] = vars[label] / X_train_dict[label].shape[0]
+    '''
+    Q_list = []
+    train_error_list = []
+    test_error_list = []
+    a = 10.0
+    eps = 2.0e-3
+    print ('Q = %f' %Q_func(X_train_dict, mius, vars, priors) )
+    Q_list.append(Q_func(X_train_dict, mius, vars, priors))
+    print ('train_error = %f' %(float(total_error(X_train_dict, mius, vars, priors)) / float(X_train_dict['A'].shape[0] + X_train_dict['B'].shape[0])))
+    train_error_list.append(float(total_error(X_train_dict, mius, vars, priors)) / float(X_train_dict['A'].shape[0] + X_train_dict['B'].shape[0]))
+    print ('test_error = %f' %(float(total_error(X_test_dict, mius, vars, priors)) / float(X_test_dict['A'].shape[0] + X_test_dict['B'].shape[0])))
+    test_error_list.append(float(total_error(X_test_dict, mius, vars, priors)) / float(X_test_dict['A'].shape[0] + X_test_dict['B'].shape[0]))
+    while True:
+        new_mius ,new_vars = gradient_descent(X_all_dict, mius, vars, priors, a, eps)
+        m = 0.0
+        n = 0.0
+        for label in mius :
+            p = np.power(mius[label] - new_mius[label], 2)
+            m += np.sqrt(p.sum())
+            q = np.power(vars[label] - new_vars[label], 2)
+            n += np.sqrt(q.sum())
+        mius = new_mius
+        vars = new_vars
+        print ('Q = %f' %Q_func(X_train_dict, mius, vars, priors) )
+        Q_list.append(Q_func(X_train_dict, mius, vars, priors))
+        print ('train_error = %f' %(float(total_error(X_train_dict, mius, vars, priors)) / float(X_train_dict['A'].shape[0] + X_train_dict['B'].shape[0])))
+        train_error_list.append(float(total_error(X_train_dict, mius, vars, priors)) / float(X_train_dict['A'].shape[0] + X_train_dict['B'].shape[0]))
+        print ('test_error = %f' %(float(total_error(X_test_dict, mius, vars, priors)) / float(X_test_dict['A'].shape[0] + X_test_dict['B'].shape[0])))
+        test_error_list.append(float(total_error(X_test_dict, mius, vars, priors)) / float(X_test_dict['A'].shape[0] + X_test_dict['B'].shape[0]))
+        if m < 1e-3 and n <1e-3 :
+            break
+
+    Q_array = np.array(Q_list)
+    train_error_array = np.array(train_error_list)
+    test_error_array = np.array(test_error_list)
+    pic_plot(Q_array, train_error_array, test_error_array)
