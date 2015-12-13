@@ -157,9 +157,9 @@ if __name__ == '__main__':
         vars[label] = np.var(X_train_dict[label], axis = 0)
         total_num += X_train_dict[label].shape[0]
     for label in X_train_dict:
-        #priors[label] = float(X_train_dict[label].shape[0]) / float(total_num)
-        priors[label] = 0.5
-    ''''
+        priors[label] = float(X_train_dict[label].shape[0]) / float(total_num)
+        #priors[label] = 0.5
+
     mius['A'] = random_assign(X_train_dict['A'], 1)
     mius['B'] = random_assign(X_train_dict['B'], 1)
     vars['A'] = np.zeros(X_train_dict['A'].shape[1], dtype= float)
@@ -170,7 +170,7 @@ if __name__ == '__main__':
             vars[label] += np.power(X_train_dict[label][i] - mius[label], 2)
     for label in vars:
         vars[label] = vars[label] / X_train_dict[label].shape[0]
-    '''
+
     Q_list = []
     train_error_list = []
     test_error_list = []
@@ -206,3 +206,5 @@ if __name__ == '__main__':
     train_error_array = np.array(train_error_list)
     test_error_array = np.array(test_error_list)
     pic_plot(Q_array, train_error_array, test_error_array)
+    print ('minimum testset error rate: %f' %(test_error_array.min()))
+    print ('maximum testset classification rate: %f' %(1 - test_error_array.min()))
