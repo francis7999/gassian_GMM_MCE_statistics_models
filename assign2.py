@@ -3,6 +3,7 @@
 import numpy as np
 from math import sqrt, exp, pi, pow
 import random
+import time
 
 def file2dict(filename):
     file = open(filename)
@@ -148,6 +149,7 @@ if __name__ == '__main__':
     X_test_dict['B'] = np.array(X_test_dict['B'])
     k = 8
     error_rate = 1.0
+    time1= time.time()
     while error_rate > 0.19:
         mius = {}
         vars = {}
@@ -184,3 +186,5 @@ if __name__ == '__main__':
         print ('number of classification error: %d'%(number_of_error))
         print ('classification error rate: %f'%(error_rate))
         print('classification rate : %f' %(1-error_rate))
+    time2= time.time()
+    print ('time consumed: %f' %(time2-time1))

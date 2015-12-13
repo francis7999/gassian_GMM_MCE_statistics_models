@@ -3,8 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="1eba78bf-2cdb-4264-8569-b032eb2193f6" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+<<<<<<< HEAD
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/a3_grid_search.py" afterPath="$PROJECT_DIR$/a3_grid_search.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assign3.py" afterPath="$PROJECT_DIR$/assign3.py" />
+=======
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assign2.py" afterPath="$PROJECT_DIR$/assign2.py" />
+>>>>>>> origin/master
     </list>
     <ignored path="gassian_GMM_MCE_statistics_models.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,6 +33,7 @@
         <entry file="file://$PROJECT_DIR$/assign3.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
+<<<<<<< HEAD
               <caret line="155" column="27" selection-start-line="155" selection-start-column="27" selection-end-line="155" selection-end-column="27" />
               <folding>
                 <element signature="e#42#60#0" expanded="true" />
@@ -42,6 +47,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="4.992405">
               <caret line="185" column="73" selection-start-line="185" selection-start-column="73" selection-end-line="185" selection-end-column="73" />
+=======
+              <caret line="184" column="33" selection-start-line="184" selection-start-column="33" selection-end-line="184" selection-end-column="33" />
+>>>>>>> origin/master
               <folding>
                 <element signature="e#42#60#0" expanded="true" />
               </folding>
@@ -49,11 +57,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="assign2.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="assign2.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assign2.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state vertical-scroll-proportion="0.0">
               <caret line="67" column="35" selection-start-line="67" selection-start-column="35" selection-end-line="67" selection-end-column="35" />
+=======
+            <state vertical-scroll-proportion="0.31276596">
+              <caret line="148" column="49" selection-start-line="148" selection-start-column="49" selection-end-line="148" selection-end-column="49" />
+>>>>>>> origin/master
               <folding>
                 <element signature="e#42#60#0" expanded="true" />
               </folding>
@@ -65,8 +78,15 @@
         <entry file="file://$PROJECT_DIR$/assign1.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
+<<<<<<< HEAD
               <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
               <folding />
+=======
+              <caret line="66" column="32" selection-start-line="66" selection-start-column="32" selection-end-line="66" selection-end-column="32" />
+              <folding>
+                <element signature="e#43#61#0" expanded="true" />
+              </folding>
+>>>>>>> origin/master
             </state>
           </provider>
         </entry>
@@ -87,16 +107,24 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/scikit_GMM.py" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/assign2.py" />
         <option value="$PROJECT_DIR$/assign3.py" />
         <option value="$PROJECT_DIR$/a3_grid_search.py" />
+=======
+        <option value="$PROJECT_DIR$/a3_grid_search.py" />
+        <option value="$PROJECT_DIR$/assign3.py" />
+        <option value="$PROJECT_DIR$/assign1.py" />
+        <option value="$PROJECT_DIR$/assign2.py" />
+>>>>>>> origin/master
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
-    <option name="width" value="1370" />
-    <option name="height" value="735" />
+    <option name="y" value="-8" />
+    <option name="width" value="1616" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -123,6 +151,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -144,13 +173,16 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
+<<<<<<< HEAD
   <component name="RunManager" selected="Python.a3_grid_search">
+=======
+  <component name="RunManager" selected="Python.assign2">
+>>>>>>> origin/master
     <configuration default="false" name="assign2" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -165,7 +197,7 @@
       <module name="gassian_GMM_MCE_statistics_models" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/assign2.py" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
       <method />
     </configuration>
     <configuration default="false" name="assign3" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -215,6 +247,23 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="gassian_GMM_MCE_statistics_models" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/a3_grid_search.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="assign1 (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/.." />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="gassian_GMM_MCE_statistics_models" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../assign1.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -341,18 +390,28 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <list size="4">
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.assign2" />
       <item index="1" class="java.lang.String" itemvalue="Python.assign3" />
       <item index="2" class="java.lang.String" itemvalue="Python.assign1" />
       <item index="3" class="java.lang.String" itemvalue="Python.a3_grid_search" />
+      <item index="4" class="java.lang.String" itemvalue="Python.assign1 (1)" />
     </list>
     <recent_temporary>
+<<<<<<< HEAD
       <list size="4">
         <item index="0" class="java.lang.String" itemvalue="Python.a3_grid_search" />
         <item index="1" class="java.lang.String" itemvalue="Python.assign3" />
         <item index="2" class="java.lang.String" itemvalue="Python.assign1" />
         <item index="3" class="java.lang.String" itemvalue="Python.assign2" />
+=======
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python.assign2" />
+        <item index="1" class="java.lang.String" itemvalue="Python.assign1" />
+        <item index="2" class="java.lang.String" itemvalue="Python.assign1 (1)" />
+        <item index="3" class="java.lang.String" itemvalue="Python.assign3" />
+        <item index="4" class="java.lang.String" itemvalue="Python.a3_grid_search" />
+>>>>>>> origin/master
       </list>
     </recent_temporary>
   </component>
@@ -370,15 +429,24 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="-8" y="0" width="1370" height="735" extended-state="1" />
     <editor active="false" />
+=======
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="true" />
+>>>>>>> origin/master
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963072" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2103929" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3216" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293011" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+>>>>>>> origin/master
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -437,6 +505,36 @@
     <entry file="file://$PROJECT_DIR$/assign2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="35" selection-start-line="31" selection-start-column="35" selection-end-line="31" selection-end-column="35" />
+          <folding>
+            <element signature="e#42#60#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assign1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="74" column="12" selection-start-line="74" selection-start-column="12" selection-end-line="74" selection-end-column="12" />
+          <folding>
+            <element signature="e#43#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assign3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#42#60#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assign2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
           <caret line="42" column="65" selection-start-line="42" selection-start-column="65" selection-end-line="42" selection-end-column="65" />
           <folding>
             <element signature="e#42#60#0" expanded="true" />
@@ -448,7 +546,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="65" column="18" selection-start-line="65" selection-start-column="18" selection-end-line="65" selection-end-column="18" />
-          <folding />
+          <folding>
+            <element signature="e#43#61#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -456,7 +556,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2236" column="4" selection-start-line="2236" selection-start-column="4" selection-end-line="2236" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -474,7 +573,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2236" column="4" selection-start-line="2236" selection-start-column="4" selection-end-line="2236" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -492,7 +590,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2236" column="4" selection-start-line="2236" selection-start-column="4" selection-end-line="2236" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -607,12 +704,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.04871795">
           <caret line="2236" column="4" selection-start-line="2236" selection-start-column="4" selection-end-line="2236" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assign1.py">
+    <entry file="file://$PROJECT_DIR$/a3_grid_search.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="0.0">
           <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding />
@@ -623,8 +720,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="67" column="35" selection-start-line="67" selection-start-column="35" selection-end-line="67" selection-end-column="35" />
+=======
+        <state vertical-scroll-proportion="1.1461538">
+          <caret line="171" column="45" selection-start-line="171" selection-start-column="45" selection-end-line="171" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../assign1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.121276595">
+          <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+>>>>>>> origin/master
           <folding>
-            <element signature="e#42#60#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -632,6 +740,7 @@
     <entry file="file://$PROJECT_DIR$/assign3.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+<<<<<<< HEAD
           <caret line="155" column="27" selection-start-line="155" selection-start-column="27" selection-end-line="155" selection-end-column="27" />
           <folding>
             <element signature="e#42#60#0" expanded="true" />
@@ -643,6 +752,29 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="4.992405">
           <caret line="185" column="73" selection-start-line="185" selection-start-column="73" selection-end-line="185" selection-end-column="73" />
+=======
+          <caret line="184" column="33" selection-start-line="184" selection-start-column="33" selection-end-line="184" selection-end-column="33" />
+>>>>>>> origin/master
+          <folding>
+            <element signature="e#42#60#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assign1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="66" column="32" selection-start-line="66" selection-start-column="32" selection-end-line="66" selection-end-column="32" />
+          <folding>
+            <element signature="e#43#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assign2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31276596">
+          <caret line="148" column="49" selection-start-line="148" selection-start-column="49" selection-end-line="148" selection-end-column="49" />
           <folding>
             <element signature="e#42#60#0" expanded="true" />
           </folding>
