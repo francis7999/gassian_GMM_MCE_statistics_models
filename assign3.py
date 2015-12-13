@@ -154,7 +154,7 @@ if __name__ == '__main__':
     for label in X_train_dict:
         priors[label] = float(X_train_dict[label].shape[0]) / float(total_num)
         #priors[label] = 0.5
-    ''''
+
     mius['A'] = random_assign(X_train_dict['A'], 1)
     mius['B'] = random_assign(X_train_dict['B'], 1)
     vars['A'] = np.zeros(X_train_dict['A'].shape[1], dtype= float)
@@ -165,7 +165,7 @@ if __name__ == '__main__':
             vars[label] += np.power(X_train_dict[label][i] - mius[label], 2)
     for label in vars:
         vars[label] = vars[label] / X_train_dict[label].shape[0]
-    '''
+
     Q_list = []
     train_error_list = []
     test_error_list = []
